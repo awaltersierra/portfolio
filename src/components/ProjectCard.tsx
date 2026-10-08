@@ -29,8 +29,18 @@ export function ProjectCard({ project, highlight }: ProjectCardProps) {
         {project.status === 'in-progress' && (
           <Badge tone="accent">{t('projects.inProgress')}</Badge>
         )}
-        <span className="ml-auto text-sm text-slate-500 dark:text-slate-400">{project.year}</span>
+        {project.status === 'in-production' && (
+          <Badge tone="success">{t('projects.inProduction')}</Badge>
+        )}
+        <span className="ml-auto text-sm text-slate-500 dark:text-slate-400">
+          {localize(project.period)}
+        </span>
       </div>
+      {project.role && (
+        <p className="mt-1 text-sm font-medium text-slate-500 dark:text-slate-400">
+          {localize(project.role)}
+        </p>
+      )}
 
       <p className="mt-3 text-slate-600 dark:text-slate-300">{localize(project.summary)}</p>
 

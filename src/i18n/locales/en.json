@@ -40,8 +40,9 @@
     "results_one": "{{count}} project",
     "results_other": "{{count}} projects",
     "inProgress": "In progress",
-    "privateRepo": "Private repository",
+    "privateRepo": "Private source",
     "code": "Code",
-    "demo": "Demo"
+    "demo": "Demo",
+    "inProduction": "In production"
   }
 }

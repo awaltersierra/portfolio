@@ -5,7 +5,7 @@ export const skillGroups: SkillGroup[] = [
   {
     id: 'languages',
     title: { es: 'Lenguajes', en: 'Languages' },
-    items: ['TypeScript', 'JavaScript', 'Python'],
+    items: ['TypeScript', 'JavaScript', 'Python', 'Clarion'],
   },
   {
     id: 'frontend',
@@ -15,7 +15,7 @@ export const skillGroups: SkillGroup[] = [
   {
     id: 'backend',
     title: { es: 'Backend', en: 'Backend' },
-    items: ['Node.js', 'Express', 'Django', 'Django REST Framework', 'Prisma'],
+    items: ['Node.js', 'Express', 'Django', 'Django REST Framework', 'Celery', 'Prisma'],
   },
   {
     id: 'data',

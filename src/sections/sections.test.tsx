@@ -43,7 +43,8 @@ describe('Skills', () => {
 describe('Projects', () => {
   it('filterableTechs ignora tecnologías de un solo proyecto y ordena por uso', () => {
     const techs = filterableTechs(projects)
-    expect(techs).not.toContain('Django')
+    expect(techs).not.toContain('Celery')
+    expect(techs).toContain('Django')
     expect(techs[0]).toBe('Docker')
     expect(techs).toContain('React')
   })
@@ -63,10 +64,18 @@ describe('Projects', () => {
     expect(cards()).toHaveLength(projects.length)
   })
 
-  it('indica repositorio privado cuando no hay repoUrl', () => {
+  it('indica código privado cuando no hay repoUrl', () => {
     render(<Projects />)
     const card = screen.getByRole('article', { name: 'Puntualin' })
-    expect(within(card).getByText('Repositorio privado')).toBeInTheDocument()
+    expect(within(card).getByText('Código privado')).toBeInTheDocument()
     expect(within(card).getByText('En desarrollo')).toBeInTheDocument()
+  })
+
+  it('muestra período, rol y estado en producción', () => {
+    render(<Projects />)
+    const card = screen.getByRole('article', { name: 'Spiga' })
+    expect(within(card).getByText('2023 — actualidad')).toBeInTheDocument()
+    expect(within(card).getByText('Líder del proyecto y desarrollador')).toBeInTheDocument()
+    expect(within(card).getByText('En producción')).toBeInTheDocument()
   })
 })

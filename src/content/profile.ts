@@ -12,11 +12,11 @@ export const profile = {
   } satisfies Localized,
   bio: {
     es: [
-      'Más de diez años en IT en Argentina: empecé como administrador de sistemas y durante ocho años estuve a cargo del área como IT Manager y Lead Programmer.',
+      'Más de diez años en IT en Argentina: empecé como administrador de sistemas y en Fedea pasé de desarrollar su sistema de gestión en Clarion a liderar el área de IT, donde impulsé Spiga, su nueva plataforma web.',
       'Hoy me enfoco en desarrollo full stack con TypeScript, React, Node.js y Python/Django, construyendo aplicaciones contenerizadas con Docker. Estudio programación en la UTN.',
     ],
     en: [
-      'Over ten years in IT in Argentina: I started as a systems administrator and spent eight years running the IT area as IT Manager and Lead Programmer.',
+      'Over ten years in IT in Argentina: I started as a systems administrator, and at Fedea I went from developing its Clarion management system to leading the IT area, where I promoted Spiga, its new web platform.',
       'Today I focus on full stack development with TypeScript, React, Node.js and Python/Django, building containerized applications with Docker. I study programming at UTN.',
     ],
   } satisfies Localized<string[]>,

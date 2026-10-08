@@ -3,14 +3,27 @@ import type { Education, Experience } from '@/types/content'
 // Solo experiencia en IT; orden: más reciente primero
 export const experience: Experience[] = [
   {
-    id: 'it-manager',
-    role: { es: 'IT Manager · Lead Programmer', en: 'IT Manager · Lead Programmer' },
+    id: 'fedea-it-lead',
+    role: { es: 'Líder del área de IT · Lead Programmer', en: 'IT Lead · Lead Programmer' },
+    company: 'Fedea',
     location: { es: 'Argentina', en: 'Argentina' },
-    start: 2017,
+    start: 2022,
     end: 2025,
     summary: {
-      es: 'Responsable del área de sistemas: gestión de la infraestructura tecnológica y liderazgo del desarrollo de software.',
-      en: 'Head of the IT area: managed the technology infrastructure and led software development.',
+      es: 'A cargo del área de sistemas: gestión de la infraestructura tecnológica y del sistema de gestión en Clarion. Impulsé y lideré el desarrollo de Spiga, la nueva plataforma web de la empresa, participando también como desarrollador.',
+      en: 'Head of the IT area: managed the technology infrastructure and the Clarion management system. I promoted and led the development of Spiga, the company’s new web platform, also contributing as a developer.',
+    },
+  },
+  {
+    id: 'fedea-developer',
+    role: { es: 'Desarrollador', en: 'Developer' },
+    company: 'Fedea',
+    location: { es: 'Argentina', en: 'Argentina' },
+    start: 2017,
+    end: 2021,
+    summary: {
+      es: 'Desarrollo y mantenimiento del sistema de gestión empresarial a medida en Clarion IDE sobre MySQL.',
+      en: 'Development and maintenance of the custom business management system in Clarion IDE on MySQL.',
     },
   },
   {

@@ -1,13 +1,62 @@
 import type { Project } from '@/types/content'
 
-// Repos privados: sin repoUrl hasta que se publiquen
+// Repos privados: sin repoUrl hasta que se publiquen. Los `featured` ocupan el ancho completo.
 export const projects: Project[] = [
+  {
+    slug: 'spiga',
+    title: { es: 'Spiga', en: 'Spiga' },
+    period: { es: '2023 — actualidad', en: '2023 — present' },
+    role: { es: 'Líder del proyecto y desarrollador', en: 'Project lead & developer' },
+    status: 'in-production',
+    featured: true,
+    summary: {
+      es: 'Sistema de gestión integral para Fedea, empresa de productos y servicios para el agro: contabilidad, tesorería, inventario, impuestos y pagos, con integraciones a ARCA, ARBA y SENASA.',
+      en: 'Comprehensive management system for Fedea, a provider of agricultural products and services: accounting, treasury, inventory, taxes and payments, integrated with ARCA, ARBA and SENASA.',
+    },
+    description: {
+      es: 'Impulsé Spiga como evolución del sistema de gestión en Clarion y lideré su desarrollo con un equipo de varios desarrolladores. API con Django y Django REST Framework, tareas programadas con Celery y MySQL como base de datos; frontend con Next.js, React y Ant Design, con acceso mediante cuentas de Google de la empresa. Integra web services de ARCA, ARBA y SENASA. Corre en Docker, con CI/CD en GitHub Actions que valida migraciones y build en cada pull request y despliega a testing y producción.',
+      en: 'I promoted Spiga as the evolution of the Clarion management system and led its development with a team of several developers. Django and Django REST Framework API, scheduled jobs with Celery and a MySQL database; Next.js, React and Ant Design frontend, with sign-in through company Google accounts. It integrates ARCA, ARBA and SENASA web services. Runs on Docker, with GitHub Actions CI/CD that validates migrations and the build on every pull request and deploys to testing and production.',
+    },
+    stack: [
+      'Django',
+      'Django REST Framework',
+      'Python',
+      'Celery',
+      'MySQL',
+      'Next.js',
+      'React',
+      'TypeScript',
+      'Ant Design',
+      'Tailwind CSS',
+      'Docker',
+      'GitHub Actions',
+    ],
+  },
+  {
+    slug: 'erp-clarion',
+    title: {
+      es: 'Sistema de gestión empresarial a medida',
+      en: 'Custom business management system',
+    },
+    period: { es: '+16 años en producción', en: '16+ years in production' },
+    role: { es: 'Desarrollador y luego líder del área', en: 'Developer, later IT lead' },
+    status: 'in-production',
+    featured: true,
+    summary: {
+      es: 'ERP a medida desarrollado en Clarion sobre MySQL, en producción hace más de 16 años y en continuo crecimiento, con integraciones a servicios externos.',
+      en: 'Custom ERP built in Clarion on MySQL, in production for over 16 years and continuously growing, with integrations to external services.',
+    },
+    description: {
+      es: 'Sistema de gestión empresarial desarrollado en Clarion IDE 11 con MySQL como base de datos. Entre 2017 y 2021 trabajé como desarrollador sobre este sistema, y desde 2022 quedó bajo mi responsabilidad como líder del área de IT.',
+      en: 'Business management system built with Clarion IDE 11 and a MySQL database. From 2017 to 2021 I worked on it as a developer, and from 2022 it was under my responsibility as head of the IT area.',
+    },
+    stack: ['Clarion', 'MySQL'],
+  },
   {
     slug: 'puntualin',
     title: { es: 'Puntualin', en: 'Puntualin' },
-    year: 2026,
+    period: '2026',
     status: 'in-progress',
-    featured: true,
     summary: {
       es: 'Plataforma multi-tenant de turnos y pagos con Mercado Pago, donde cada profesional opera en su propio subdominio.',
       en: 'Multi-tenant scheduling and payments platform with Mercado Pago, where each professional runs on their own subdomain.',
@@ -31,7 +80,7 @@ export const projects: Project[] = [
   {
     slug: 'hotel-booking',
     title: { es: 'Reservas de hotel', en: 'Hotel Booking' },
-    year: 2026,
+    period: '2026',
     summary: {
       es: 'Sistema de reservas de hotel con autenticación JWT en cookies HttpOnly, gestión de perfil y subida de avatares.',
       en: 'Hotel booking system with JWT authentication in HttpOnly cookies, profile management and avatar uploads.',
@@ -55,7 +104,7 @@ export const projects: Project[] = [
   {
     slug: 'node-rest-api',
     title: { es: 'API REST con Node.js y MySQL', en: 'Node.js & MySQL REST API' },
-    year: 2026,
+    period: '2026',
     summary: {
       es: 'Backend REST dockerizado detrás de Nginx como reverse proxy, con healthchecks y arranque ordenado de servicios.',
       en: 'Dockerized REST backend behind Nginx as a reverse proxy, with healthchecks and ordered service startup.',
@@ -69,7 +118,7 @@ export const projects: Project[] = [
   {
     slug: 'portfolio',
     title: { es: 'Este portfolio', en: 'This portfolio' },
-    year: 2026,
+    period: '2026',
     status: 'in-progress',
     summary: {
       es: 'SPA bilingüe con tema claro/oscuro, contenido tipado y tests automatizados.',

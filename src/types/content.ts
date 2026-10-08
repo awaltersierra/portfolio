@@ -27,12 +27,15 @@ export type SkillGroup = {
   items: Text[]
 }
 
-export type ProjectStatus = 'in-progress' | 'completed'
+export type ProjectStatus = 'in-progress' | 'in-production'
 
 export type Project = {
   slug: string
   title: Localized
-  year: number
+  /** Período o año, p. ej. '2026' o { es: '2023 — actualidad', en: '2023 — present' }. */
+  period: Text
+  /** Mi rol en el proyecto, cuando fue en equipo. */
+  role?: Localized
   status?: ProjectStatus
   featured?: boolean
   summary: Localized
