@@ -8,10 +8,9 @@ export const experience: Experience[] = [
     company: 'Fedea',
     location: { es: 'Argentina', en: 'Argentina' },
     start: 2022,
-    end: 2025,
     summary: {
-      es: 'A cargo del área de sistemas: gestión de la infraestructura tecnológica y del sistema de gestión en Clarion. Impulsé y lideré el desarrollo de Spiga, la nueva plataforma web de la empresa, participando también como desarrollador.',
-      en: 'Head of the IT area: managed the technology infrastructure and the Clarion management system. I promoted and led the development of Spiga, the company’s new web platform, also contributing as a developer.',
+      es: 'A cargo del área de sistemas: gestión de la infraestructura tecnológica y del sistema de gestión en Clarion. Impulsé y lidero el desarrollo de Spiga, la nueva plataforma web de la empresa, participando también como desarrollador.',
+      en: 'Head of the IT area: managing the technology infrastructure and the Clarion management system. I promoted and lead the development of Spiga, the company’s new web platform, also contributing as a developer.',
     },
   },
   {

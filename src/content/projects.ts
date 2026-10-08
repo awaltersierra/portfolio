@@ -14,8 +14,8 @@ export const projects: Project[] = [
       en: 'Comprehensive management system for Fedea, a provider of agricultural products and services: accounting, treasury, inventory, taxes and payments, integrated with ARCA, ARBA and SENASA.',
     },
     description: {
-      es: 'Impulsé Spiga como evolución del sistema de gestión en Clarion y lideré su desarrollo con un equipo de varios desarrolladores. API con Django y Django REST Framework, tareas programadas con Celery y MySQL como base de datos; frontend con Next.js, React y Ant Design, con acceso mediante cuentas de Google de la empresa. Integra web services de ARCA, ARBA y SENASA. Corre en Docker, con CI/CD en GitHub Actions que valida migraciones y build en cada pull request y despliega a testing y producción.',
-      en: 'I promoted Spiga as the evolution of the Clarion management system and led its development with a team of several developers. Django and Django REST Framework API, scheduled jobs with Celery and a MySQL database; Next.js, React and Ant Design frontend, with sign-in through company Google accounts. It integrates ARCA, ARBA and SENASA web services. Runs on Docker, with GitHub Actions CI/CD that validates migrations and the build on every pull request and deploys to testing and production.',
+      es: 'Impulsé Spiga como evolución del sistema de gestión en Clarion y lidero su desarrollo con un equipo de 5 desarrolladores. API con Django y Django REST Framework, tareas programadas con Celery y MySQL como base de datos; frontend con Next.js, React y Ant Design, con acceso mediante cuentas de Google de la empresa. Integra web services de ARCA, ARBA y SENASA. Corre en Docker, con CI/CD en GitHub Actions que valida migraciones y build en cada pull request y despliega a testing y producción.',
+      en: 'I promoted Spiga as the evolution of the Clarion management system and lead its development with a team of 5 developers. Django and Django REST Framework API, scheduled jobs with Celery and a MySQL database; Next.js, React and Ant Design frontend, with sign-in through company Google accounts. It integrates ARCA, ARBA and SENASA web services. Runs on Docker, with GitHub Actions CI/CD that validates migrations and the build on every pull request and deploys to testing and production.',
     },
     stack: [
       'Django',
@@ -43,12 +43,12 @@ export const projects: Project[] = [
     status: 'in-production',
     featured: true,
     summary: {
-      es: 'ERP a medida desarrollado en Clarion sobre MySQL, en producción hace más de 16 años y en continuo crecimiento, con integraciones a servicios externos.',
-      en: 'Custom ERP built in Clarion on MySQL, in production for over 16 years and continuously growing, with integrations to external services.',
+      es: 'ERP a medida desarrollado en Clarion sobre MySQL, en producción hace más de 16 años y en continuo crecimiento, con integraciones a ARCA, ARBA y SENASA.',
+      en: 'Custom ERP built in Clarion on MySQL, in production for over 16 years and continuously growing, integrated with ARCA, ARBA and SENASA.',
     },
     description: {
-      es: 'Sistema de gestión empresarial desarrollado en Clarion IDE 11 con MySQL como base de datos. Entre 2017 y 2021 trabajé como desarrollador sobre este sistema, y desde 2022 quedó bajo mi responsabilidad como líder del área de IT.',
-      en: 'Business management system built with Clarion IDE 11 and a MySQL database. From 2017 to 2021 I worked on it as a developer, and from 2022 it was under my responsibility as head of the IT area.',
+      es: 'Sistema de gestión empresarial desarrollado en Clarion IDE 11 con MySQL como base de datos e integraciones con los web services de ARCA, ARBA y SENASA. Entre 2017 y 2021 trabajé como desarrollador sobre este sistema, y desde 2022 está bajo mi responsabilidad como líder del área de IT.',
+      en: 'Business management system built with Clarion IDE 11 and a MySQL database, integrated with ARCA, ARBA and SENASA web services. From 2017 to 2021 I worked on it as a developer, and since 2022 it has been under my responsibility as head of the IT area.',
     },
     stack: ['Clarion', 'MySQL'],
   },
