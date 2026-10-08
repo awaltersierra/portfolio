@@ -1,0 +1,18 @@
+@import 'tailwindcss';
+
+/* Dark mode por clase (.dark en <html>), controlado por el toggle de tema en fase 2 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
