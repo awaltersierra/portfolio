@@ -37,7 +37,7 @@ describe('App', () => {
     expect(screen.getByText("Hi, I'm")).toBeInTheDocument()
     expect(screen.getByText('Full Stack Developer')).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Education' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'Systems Administrator' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Night Support Engineer' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Switch to dark theme' })).toBeInTheDocument()
     expect(document.documentElement.lang).toBe('en')
     expect(localStorage.getItem('lang')).toBe('en')

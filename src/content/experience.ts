@@ -26,14 +26,25 @@ export const experience: Experience[] = [
     },
   },
   {
-    id: 'sysadmin',
-    role: { es: 'Administrador de sistemas', en: 'Systems Administrator' },
+    id: 'project-engineer',
+    role: { es: 'Project Engineer', en: 'Project Engineer' },
     location: { es: 'Argentina', en: 'Argentina' },
-    start: 2014,
+    start: 2015,
     end: 2017,
     summary: {
-      es: 'Administración de servidores y gestión de datos.',
-      en: 'Server administration and data management.',
+      es: 'Diseño y soporte de infraestructuras cloud de alto rendimiento y alta disponibilidad, en entornos AWS, Google Cloud, Azure y Rackspace.',
+      en: 'Design and support of high-performance, high-availability cloud infrastructure on AWS, Google Cloud, Azure and Rackspace.',
+    },
+  },
+  {
+    id: 'night-support-engineer',
+    role: { es: 'Night Support Engineer', en: 'Night Support Engineer' },
+    location: { es: 'Argentina', en: 'Argentina' },
+    start: 2014,
+    end: 2015,
+    summary: {
+      es: 'Soporte nocturno a proyectos de alta disponibilidad en la nube, en entornos AWS, Google Cloud, Azure y Rackspace.',
+      en: 'Night-shift support for high-availability cloud projects on AWS, Google Cloud, Azure and Rackspace.',
     },
   },
 ]

@@ -1,6 +1,6 @@
 # Walter Sierra — Portfolio
 
-> Portfolio de Walter Sierra, desarrollador full stack con más de 10 años en IT (Argentina). Fue administrador de sistemas, desarrollador del ERP en Clarion de Fedea y es líder del área de IT de Fedea, donde impulsa Spiga (Django, Next.js, MySQL).
+> Portfolio de Walter Sierra, desarrollador full stack con más de 10 años en IT (Argentina). Trabajó en soporte e ingeniería de infraestructura cloud de alta disponibilidad (AWS, Google Cloud, Azure, Rackspace), fue desarrollador del ERP en Clarion de Fedea y es líder del área de IT de Fedea, donde impulsa Spiga (Django, Next.js, MySQL).
 
 El sitio es una SPA bilingüe (español/inglés). El contenido completo está en la página principal.
 

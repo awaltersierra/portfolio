@@ -1,6 +1,6 @@
 import type { SkillGroup } from '@/types/content'
 
-// Tecnologías tomadas de los proyectos reales (ver projects.ts) y competencias del CV
+// Tecnologías de los proyectos reales (ver projects.ts), de la experiencia y competencias del CV
 export const skillGroups: SkillGroup[] = [
   {
     id: 'languages',
@@ -25,7 +25,23 @@ export const skillGroups: SkillGroup[] = [
   {
     id: 'devops',
     title: { es: 'DevOps e infraestructura', en: 'DevOps & infrastructure' },
-    items: ['Docker', 'Docker Compose', 'Nginx', 'Caddy', 'Git', 'GitHub Actions'],
+    items: ['CI/CD', 'GitHub Actions', 'Docker', 'Docker Compose', 'Nginx', 'Caddy', 'Git'],
+  },
+  {
+    id: 'cloud',
+    title: { es: 'Cloud', en: 'Cloud' },
+    items: [
+      'AWS',
+      'Google Cloud',
+      'Azure',
+      'Rackspace',
+      { es: 'Alta disponibilidad', en: 'High availability' },
+    ],
+  },
+  {
+    id: 'testing',
+    title: { es: 'Testing', en: 'Testing' },
+    items: ['Vitest', 'Testing Library', 'Playwright'],
   },
   {
     id: 'it',
