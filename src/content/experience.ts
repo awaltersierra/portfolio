@@ -5,7 +5,7 @@ export const experience: Experience[] = [
   {
     id: 'fedea-it-lead',
     role: { es: 'Líder del área de IT · Lead Programmer', en: 'IT Lead · Lead Programmer' },
-    company: 'Fedea',
+    company: 'Fedea SA',
     location: { es: 'Argentina', en: 'Argentina' },
     start: 2022,
     summary: {
@@ -16,7 +16,7 @@ export const experience: Experience[] = [
   {
     id: 'fedea-developer',
     role: { es: 'Desarrollador', en: 'Developer' },
-    company: 'Fedea',
+    company: 'Fedea SA',
     location: { es: 'Argentina', en: 'Argentina' },
     start: 2017,
     end: 2021,
@@ -28,6 +28,7 @@ export const experience: Experience[] = [
   {
     id: 'project-engineer',
     role: { es: 'Project Engineer', en: 'Project Engineer' },
+    company: 'Nubity SRL',
     location: { es: 'Argentina', en: 'Argentina' },
     start: 2015,
     end: 2017,
@@ -39,6 +40,7 @@ export const experience: Experience[] = [
   {
     id: 'night-support-engineer',
     role: { es: 'Night Support Engineer', en: 'Night Support Engineer' },
+    company: 'Nubity SRL',
     location: { es: 'Argentina', en: 'Argentina' },
     start: 2014,
     end: 2015,
