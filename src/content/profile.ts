@@ -44,6 +44,9 @@ export const profile = {
     { name: { es: 'Español', en: 'Spanish' }, level: { es: 'nativo', en: 'native' } },
     { name: { es: 'Inglés', en: 'English' } },
   ] satisfies { name: Localized; level?: Localized }[],
+  // Solo en el CV (no en las páginas del sitio, para no exponerlos a scrapers)
+  location: { es: 'Leipzig, Alemania', en: 'Leipzig, Germany' } satisfies Localized,
+  phones: ['+49 1775044428', '+54 2302696553'],
   email: 'aws1912@gmail.com',
   siteUrl: 'https://awaltersierra.github.io/portfolio/',
   socials: {

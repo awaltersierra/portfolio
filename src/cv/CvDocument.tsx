@@ -1,5 +1,5 @@
 import { Document, Font, Link, Page, StyleSheet, Text, View } from '@react-pdf/renderer'
-import type { ReactNode } from 'react'
+import { Fragment, type ReactNode } from 'react'
 import { education, experience } from '@/content/experience'
 import { profile } from '@/content/profile'
 import { projects } from '@/content/projects'
@@ -104,10 +104,21 @@ export function CvDocument({ language }: { language: Language }) {
         <Text style={styles.name}>{profile.name}</Text>
         <Text style={styles.role}>{role}</Text>
         <Text style={styles.contact}>
+          {l(profile.location)}
+          {profile.phones.map((phone) => (
+            <Fragment key={phone}>
+              {'  ·  '}
+              <Link src={`tel:${phone.replaceAll(' ', '')}`} style={styles.link}>
+                {phone}
+              </Link>
+            </Fragment>
+          ))}
+          {'  ·  '}
           <Link src={`mailto:${profile.email}`} style={styles.link}>
             {profile.email}
           </Link>
-          {'  ·  '}
+        </Text>
+        <Text style={styles.contact}>
           <Link src={profile.siteUrl} style={styles.link}>
             {siteLabel}
           </Link>
