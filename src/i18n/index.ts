@@ -13,8 +13,13 @@ export const resources = {
   en: { translation: en },
 } as const
 
+// En el pre-render (Node) no hay documento: se genera en el idioma por defecto
+const isBrowser = typeof document !== 'undefined'
+
 // Preferencia guardada > idioma del navegador > español
+// (index.html replica esta lógica para decidir si hidratar el HTML pre-renderizado)
 function detectLanguage(): Language {
+  if (!isBrowser) return FALLBACK
   const stored = readStorage(STORAGE_KEY)
   if (isLanguage(stored)) return stored
   return navigator.language.toLowerCase().startsWith('en') ? 'en' : FALLBACK
@@ -22,6 +27,7 @@ function detectLanguage(): Language {
 
 // Sincroniza el documento con el idioma activo (lang, title, description)
 function syncDocument(language: string) {
+  if (!isBrowser) return
   document.documentElement.lang = language
   document.title = i18n.t('meta.title')
   document

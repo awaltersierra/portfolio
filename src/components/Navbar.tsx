@@ -1,4 +1,4 @@
-import { useState, type MouseEvent } from 'react'
+import { useEffect, useRef, useState, type MouseEvent } from 'react'
 import { Menu, X } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { SECTION_IDS } from '@/content/navigation'
@@ -13,6 +13,19 @@ export function Navbar() {
   const { isHome, goToSection, goHome } = useSectionNavigation()
   const activeId = useActiveSection(SECTION_IDS, isHome)
   const [menuOpen, setMenuOpen] = useState(false)
+  const menuButton = useRef<HTMLButtonElement>(null)
+
+  // Escape cierra el menú mobile y devuelve el foco al botón que lo abrió
+  useEffect(() => {
+    if (!menuOpen) return
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return
+      setMenuOpen(false)
+      menuButton.current?.focus()
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [menuOpen])
 
   // preventDefault: el hash de la URL es del HashRouter; los href apuntan a Home como fallback
   const goTo = (e: MouseEvent, id: string) => {
@@ -53,14 +66,11 @@ export function Navbar() {
         aria-label={t('nav.label')}
         className="mx-auto flex h-16 max-w-5xl items-center gap-2 px-4 sm:px-6"
       >
-        <a
-          href="#/"
-          onClick={goTop}
-          className="mr-auto text-lg font-bold tracking-tight"
-          aria-label={t('nav.home', { name: profile.name })}
-        >
+        <a href="#/" onClick={goTop} className="mr-auto text-lg font-bold tracking-tight">
+          {/* Sin aria-label: el nombre accesible incluye el texto visible (WCAG 2.5.3) */}
           {profile.initials}
           <span className="text-accent">.</span>
+          <span className="sr-only"> {t('nav.home', { name: profile.name })}</span>
         </a>
 
         <ul className="hidden items-center gap-1 md:flex">{links}</ul>
@@ -69,6 +79,7 @@ export function Navbar() {
           <LangToggle />
           <ThemeToggle />
           <button
+            ref={menuButton}
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
             aria-expanded={menuOpen}

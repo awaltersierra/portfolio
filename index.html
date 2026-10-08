@@ -2,22 +2,88 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portfolio de Walter Sierra" />
     <title>Walter Sierra · Portfolio</title>
-    <!-- Aplica el tema antes del primer paint para evitar el flash de tema incorrecto -->
+    <meta
+      name="description"
+      content="Walter Sierra, desarrollador full stack con más de 10 años en IT. Proyectos con React, TypeScript, Node.js, Python y Django."
+    />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#020618" media="(prefers-color-scheme: dark)" />
+
+    <!-- Open Graph / redes sociales. og:url, og:image y canonical los agrega vite.config.ts si hay SITE_URL -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Walter Sierra · Portfolio" />
+    <meta property="og:title" content="Walter Sierra · Desarrollador Full Stack" />
+    <meta
+      property="og:description"
+      content="Más de 10 años en IT: de sysadmin a líder del área de IT en Fedea. Proyectos con React, TypeScript, Node.js y Django."
+    />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Walter Sierra",
+        "jobTitle": "Full Stack Developer",
+        "worksFor": { "@type": "Organization", "name": "Fedea" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Universidad Tecnológica Nacional" },
+        "nationality": ["Argentina", "Spain"],
+        "knowsLanguage": ["es", "en"],
+        "knowsAbout": ["React", "TypeScript", "Node.js", "Python", "Django", "Docker", "MySQL"],
+        "sameAs": ["https://github.com/awaltersierra"]
+      }
+    </script>
+
+    <!--
+      Antes del primer paint:
+      1. Aplica el tema guardado o el del sistema (evita el flash de tema incorrecto).
+      2. Detecta el idioma (replica src/i18n) y lo deja en data-lang: el build pre-renderiza
+         Home en ambos idiomas y un script tras #root elige este (ver scripts/prerender.mjs).
+      3. Si la ruta no es Home, marca data-csr: se oculta #root hasta que React renderice
+         (evita mostrar Home un instante) y main.tsx no hidrata.
+    -->
+    <style>
+      html[data-csr] #root {
+        visibility: hidden;
+      }
+    </style>
     <script>
-      try {
-        const t = localStorage.getItem('theme')
-        if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.documentElement.classList.add('dark')
+      ;(function () {
+        const html = document.documentElement
+        const read = (key) => {
+          try {
+            return localStorage.getItem(key)
+          } catch {
+            return null
+          }
         }
-      } catch {}
+        const theme = read('theme')
+        if (theme === 'dark' || (!theme && matchMedia('(prefers-color-scheme: dark)').matches)) {
+          html.classList.add('dark')
+        }
+        let lang = read('lang')
+        if (lang !== 'es' && lang !== 'en') {
+          lang = navigator.language.toLowerCase().startsWith('en') ? 'en' : 'es'
+        }
+        html.dataset.lang = lang
+        const route = location.hash.replace(/^#/, '') || '/'
+        if (route !== '/') html.setAttribute('data-csr', '')
+      })()
     </script>
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <p style="padding: 1rem; text-align: center">
+        Este sitio necesita JavaScript para funcionar. · This site requires JavaScript.
+      </p>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

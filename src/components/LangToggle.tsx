@@ -9,12 +9,12 @@ export function LangToggle() {
     <button
       type="button"
       onClick={toggleLanguage}
-      // La etiqueta va en el idioma destino, para que quien no lee el actual la entienda
-      aria-label={t('language.switch', { lng: next })}
       lang={next}
-      className="icon-button w-auto px-2.5 text-sm font-semibold uppercase"
+      className="icon-button w-auto px-2.5 text-sm font-semibold"
     >
-      {next}
+      {/* Nombre accesible = código visible + descripción en el idioma destino (WCAG 2.5.3) */}
+      {next.toUpperCase()}
+      <span className="sr-only">, {t('language.switch', { lng: next })}</span>
     </button>
   )
 }

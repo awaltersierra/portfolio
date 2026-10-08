@@ -28,7 +28,7 @@ describe('App', () => {
     expect(document.documentElement.lang).toBe('es')
     expect(screen.getByText('Desarrollador Full Stack')).toBeInTheDocument()
 
-    await userEvent.click(screen.getByRole('button', { name: 'Switch to English' }))
+    await userEvent.click(screen.getByRole('button', { name: /Switch to English/ }))
 
     const nav = screen.getByRole('navigation', { name: 'Main' })
     for (const label of ['About', 'Experience', 'Skills', 'Projects']) {
@@ -43,7 +43,7 @@ describe('App', () => {
     expect(localStorage.getItem('lang')).toBe('en')
 
     // y vuelve a español
-    await userEvent.click(screen.getByRole('button', { name: 'Cambiar a español' }))
+    await userEvent.click(screen.getByRole('button', { name: /Cambiar a español/ }))
     expect(screen.getByRole('navigation', { name: 'Principal' })).toHaveTextContent('Sobre mí')
     expect(localStorage.getItem('lang')).toBe('es')
   })
@@ -66,5 +66,9 @@ describe('App', () => {
       'true',
     )
     expect(document.getElementById('mobile-menu')).toBeInTheDocument()
+
+    await userEvent.keyboard('{Escape}')
+    expect(document.getElementById('mobile-menu')).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Abrir menú' })).toHaveFocus()
   })
 })

@@ -1,12 +1,16 @@
-import { useEffect, useRef, type MouseEvent } from 'react'
+import { lazy, Suspense, useEffect, useRef, type MouseEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Route, Routes, useLocation } from 'react-router'
 import { Footer } from '@/components/Footer'
 import { Navbar } from '@/components/Navbar'
 import type { HomeLocationState } from '@/hooks/useSectionNavigation'
 import { Home } from '@/pages/Home'
-import { NotFound } from '@/pages/NotFound'
-import { ProjectDetail } from '@/pages/ProjectDetail'
+
+// Fuera de Home se cargan bajo demanda: la página inicial no paga su JS
+const ProjectDetail = lazy(() =>
+  import('@/pages/ProjectDetail').then((m) => ({ default: m.ProjectDetail })),
+)
+const NotFound = lazy(() => import('@/pages/NotFound').then((m) => ({ default: m.NotFound })))
 
 // Mueve el foco al contenido sin tocar el hash (lo usa HashRouter)
 function skipToContent(e: MouseEvent) {
@@ -44,11 +48,13 @@ function App() {
       </a>
       <Navbar />
       <main id="main" tabIndex={-1} className="outline-none">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects/:slug" element={<ProjectDetail />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects/:slug" element={<ProjectDetail />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </main>
       <Footer />
     </>

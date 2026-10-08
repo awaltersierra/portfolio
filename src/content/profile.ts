@@ -1,11 +1,12 @@
-import photo from '@/assets/profile.jpg'
 import type { Fact } from '@/types/content'
 import type { Localized } from '@/types/i18n'
 
 export const profile = {
   name: 'Walter Sierra',
   initials: 'WS',
-  photo,
+  // En public/, con ruta relativa al documento (único, rutas en el hash): misma URL en el
+  // HTML pre-renderizado y en el cliente. No usar BASE_URL: en el build SSR vale '/'
+  photo: './profile.webp',
   role: {
     es: 'Desarrollador Full Stack',
     en: 'Full Stack Developer',
