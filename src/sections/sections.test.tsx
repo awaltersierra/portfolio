@@ -1,0 +1,72 @@
+import { render, screen, within } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { experience } from '@/content/experience'
+import { projects } from '@/content/projects'
+import { profile } from '@/content/profile'
+import { filterableTechs } from '@/lib/projects'
+import { Experience } from '@/sections/Experience'
+import { Hero } from '@/sections/Hero'
+import { Projects } from '@/sections/Projects'
+import { Skills } from '@/sections/Skills'
+
+describe('Hero', () => {
+  it('muestra foto, rol, bio y contacto', () => {
+    render(<Hero />)
+    expect(screen.getByRole('img', { name: `Foto de ${profile.name}` })).toBeInTheDocument()
+    expect(screen.getByText(profile.bio.es[0])).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /Contactame/ })).toHaveAttribute(
+      'href',
+      `mailto:${profile.email}`,
+    )
+    // sin CV publicado no hay botón de descarga
+    expect(screen.queryByRole('link', { name: /Descargar CV/ })).not.toBeInTheDocument()
+  })
+})
+
+describe('Experience', () => {
+  it('lista solo la experiencia cargada, de la más reciente a la más antigua', () => {
+    render(<Experience />)
+    const roles = screen.getAllByRole('heading', { level: 3 }).map((h) => h.textContent)
+    expect(roles.slice(0, experience.length)).toEqual(experience.map((e) => e.role.es))
+    expect(screen.getByText('UTN — Universidad Tecnológica Nacional')).toBeInTheDocument()
+  })
+})
+
+describe('Skills', () => {
+  it('traduce las competencias y deja fijos los nombres de tecnologías', () => {
+    render(<Skills />)
+    expect(screen.getByText('Liderazgo técnico')).toBeInTheDocument()
+    expect(screen.getByText('Docker')).toBeInTheDocument()
+  })
+})
+
+describe('Projects', () => {
+  it('filterableTechs ignora tecnologías de un solo proyecto y ordena por uso', () => {
+    const techs = filterableTechs(projects)
+    expect(techs).not.toContain('Django')
+    expect(techs[0]).toBe('Docker')
+    expect(techs).toContain('React')
+  })
+
+  it('filtra por tecnología y vuelve a mostrar todos', async () => {
+    render(<Projects />)
+    const cards = () => screen.getAllByRole('article')
+    expect(cards()).toHaveLength(projects.length)
+
+    await userEvent.click(screen.getByRole('button', { name: 'React' }))
+    expect(screen.getByRole('button', { name: 'React' })).toHaveAttribute('aria-pressed', 'true')
+    const withReact = projects.filter((p) => p.stack.includes('React'))
+    expect(cards()).toHaveLength(withReact.length)
+    expect(screen.getByText(`${withReact.length} proyectos`)).toBeInTheDocument()
+
+    await userEvent.click(screen.getByRole('button', { name: 'Todos' }))
+    expect(cards()).toHaveLength(projects.length)
+  })
+
+  it('indica repositorio privado cuando no hay repoUrl', () => {
+    render(<Projects />)
+    const card = screen.getByRole('article', { name: 'Puntualin' })
+    expect(within(card).getByText('Repositorio privado')).toBeInTheDocument()
+    expect(within(card).getByText('En desarrollo')).toBeInTheDocument()
+  })
+})

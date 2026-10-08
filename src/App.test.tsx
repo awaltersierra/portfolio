@@ -26,7 +26,7 @@ describe('App', () => {
   it('cambia a inglés: traduce la UI y el contenido, actualiza el documento y lo persiste', async () => {
     render(<App />)
     expect(document.documentElement.lang).toBe('es')
-    expect(screen.getByText('Desarrollador de software')).toBeInTheDocument()
+    expect(screen.getByText('Desarrollador Full Stack')).toBeInTheDocument()
 
     await userEvent.click(screen.getByRole('button', { name: 'Switch to English' }))
 
@@ -35,7 +35,9 @@ describe('App', () => {
       expect(nav).toHaveTextContent(label)
     }
     expect(screen.getByText("Hi, I'm")).toBeInTheDocument()
-    expect(screen.getByText('Software Developer')).toBeInTheDocument()
+    expect(screen.getByText('Full Stack Developer')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Education' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Systems Administrator' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Switch to dark theme' })).toBeInTheDocument()
     expect(document.documentElement.lang).toBe('en')
     expect(localStorage.getItem('lang')).toBe('en')

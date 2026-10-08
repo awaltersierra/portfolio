@@ -24,6 +24,24 @@
     "skipToContent": "Saltar al contenido"
   },
   "hero": {
-    "greeting": "Hola, soy"
+    "greeting": "Hola, soy",
+    "contact": "Contactame",
+    "viewProjects": "Ver proyectos",
+    "downloadCv": "Descargar CV",
+    "photoAlt": "Foto de {{name}}"
+  },
+  "experience": {
+    "present": "Actualidad",
+    "education": "Formación"
+  },
+  "projects": {
+    "filterLabel": "Filtrar por tecnología",
+    "all": "Todos",
+    "results_one": "{{count}} proyecto",
+    "results_other": "{{count}} proyectos",
+    "inProgress": "En desarrollo",
+    "privateRepo": "Repositorio privado",
+    "code": "Código",
+    "demo": "Demo"
   }
 }

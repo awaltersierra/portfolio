@@ -11,3 +11,6 @@ npm-debug.log*
 
 # Artefactos de Playwright MCP
 .playwright-mcp
+
+# Documentos personales (no se publican)
+private/

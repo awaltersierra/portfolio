@@ -1,7 +1,8 @@
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { setLanguage } from '@/i18n'
-import { isLanguage, type Language, type Localized } from '@/types/i18n'
+import { localizeIn } from '@/lib/localize'
+import { isLanguage, type Language } from '@/types/i18n'
 
 export function useLanguage() {
   const { i18n } = useTranslation()
@@ -11,8 +12,8 @@ export function useLanguage() {
     void setLanguage(language === 'es' ? 'en' : 'es')
   }, [language])
 
-  /** Elige la variante del idioma activo de un valor `Localized` del contenido. */
-  const localize = useCallback(<T>(value: Localized<T>): T => value[language], [language])
+  /** Elige la variante del idioma activo de un valor del contenido (`Localized` o string plano). */
+  const localize = useMemo(() => localizeIn(language), [language])
 
   return { language, toggleLanguage, localize }
 }
