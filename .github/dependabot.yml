@@ -13,6 +13,9 @@ updates:
       # TypeScript fijado en 6.x hasta que typescript-eslint soporte la 7 (peer <6.1)
       - dependency-name: typescript
         update-types: ['version-update:semver-major']
+      # Los tipos de Node siguen la versión de Node del proyecto (.nvmrc = 24)
+      - dependency-name: '@types/node'
+        update-types: ['version-update:semver-major']
     groups:
       # Menores y parches juntos; las mayores van en PRs aparte porque pueden romper
       dependencias:
