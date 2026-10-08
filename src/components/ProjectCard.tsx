@@ -1,8 +1,11 @@
-import { ExternalLink, Lock } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router'
 import { Badge } from '@/components/Badge'
-import { GithubIcon } from '@/components/icons'
+import { ProjectLinks } from '@/components/ProjectLinks'
+import { ProjectStatusBadge } from '@/components/ProjectStatusBadge'
 import { useLanguage } from '@/hooks/useLanguage'
+import { projectCardId } from '@/lib/projects'
 import type { Project } from '@/types/content'
 
 type ProjectCardProps = {
@@ -17,21 +20,23 @@ export function ProjectCard({ project, highlight }: ProjectCardProps) {
   const titleId = `project-${project.slug}`
   return (
     <article
+      id={projectCardId(project.slug)}
       aria-labelledby={titleId}
-      className={`flex flex-col rounded-xl border border-slate-200 bg-white p-6 transition-shadow hover:shadow-md dark:border-slate-800 dark:bg-slate-900/40 ${
+      className={`group relative flex scroll-mt-24 flex-col rounded-xl border border-slate-200 bg-white p-6 transition hover:border-accent/50 hover:shadow-md dark:border-slate-800 dark:bg-slate-900/40 ${
         project.featured ? 'md:col-span-2' : ''
       }`}
     >
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
         <h3 id={titleId} className="text-xl font-semibold">
-          {localize(project.title)}
+          {/* Link "estirado": su ::after cubre toda la card */}
+          <Link
+            to={`/projects/${project.slug}`}
+            className="after:absolute after:inset-0 after:rounded-xl focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-accent"
+          >
+            {localize(project.title)}
+          </Link>
         </h3>
-        {project.status === 'in-progress' && (
-          <Badge tone="accent">{t('projects.inProgress')}</Badge>
-        )}
-        {project.status === 'in-production' && (
-          <Badge tone="success">{t('projects.inProduction')}</Badge>
-        )}
+        <ProjectStatusBadge status={project.status} />
         <span className="ml-auto text-sm text-slate-500 dark:text-slate-400">
           {localize(project.period)}
         </span>
@@ -53,23 +58,14 @@ export function ProjectCard({ project, highlight }: ProjectCardProps) {
       </ul>
 
       <div className="mt-auto flex flex-wrap items-center gap-4 pt-5 text-sm">
-        {project.repoUrl ? (
-          <a href={project.repoUrl} target="_blank" rel="noreferrer" className="link-muted">
-            <GithubIcon className="size-4" />
-            {t('projects.code')}
-          </a>
-        ) : (
-          <span className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
-            <Lock className="size-4" aria-hidden="true" />
-            {t('projects.privateRepo')}
-          </span>
-        )}
-        {project.demoUrl && (
-          <a href={project.demoUrl} target="_blank" rel="noreferrer" className="link-muted">
-            <ExternalLink className="size-4" aria-hidden="true" />
-            {t('projects.demo')}
-          </a>
-        )}
+        <ProjectLinks project={project} />
+        <span
+          aria-hidden="true"
+          className="ml-auto flex items-center gap-1 font-medium text-accent transition-transform group-hover:translate-x-0.5"
+        >
+          {t('projects.viewDetails')}
+          <ArrowRight className="size-4" />
+        </span>
       </div>
     </article>
   )

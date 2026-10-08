@@ -1,10 +1,10 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import App from '@/App'
+import { renderApp } from '@/test/render'
 
 describe('App', () => {
   it('renderiza el nombre y la navegación principal', () => {
-    render(<App />)
+    renderApp()
     expect(screen.getByRole('heading', { level: 1, name: 'Walter Sierra' })).toBeInTheDocument()
     const nav = screen.getByRole('navigation', { name: 'Principal' })
     for (const label of ['Sobre mí', 'Experiencia', 'Skills', 'Proyectos']) {
@@ -13,7 +13,7 @@ describe('App', () => {
   })
 
   it('alterna el tema y lo persiste', async () => {
-    render(<App />)
+    renderApp()
     await userEvent.click(screen.getByRole('button', { name: 'Activar tema oscuro' }))
     expect(document.documentElement).toHaveClass('dark')
     expect(localStorage.getItem('theme')).toBe('dark')
@@ -24,7 +24,7 @@ describe('App', () => {
   })
 
   it('cambia a inglés: traduce la UI y el contenido, actualiza el documento y lo persiste', async () => {
-    render(<App />)
+    renderApp()
     expect(document.documentElement.lang).toBe('es')
     expect(screen.getByText('Desarrollador Full Stack')).toBeInTheDocument()
 
@@ -48,17 +48,16 @@ describe('App', () => {
     expect(localStorage.getItem('lang')).toBe('es')
   })
 
-  it('el link de la navbar scrollea a la sección sin cambiar el hash', async () => {
-    render(<App />)
+  it('el link de la navbar scrollea a la sección en Home', async () => {
+    renderApp()
     const nav = screen.getByRole('navigation', { name: 'Principal' })
     const link = Array.from(nav.querySelectorAll('a')).find((a) => a.textContent === 'Proyectos')!
     await userEvent.click(link)
     expect(Element.prototype.scrollIntoView).toHaveBeenCalled()
-    expect(window.location.hash).toBe('')
   })
 
   it('abre y cierra el menú mobile', async () => {
-    render(<App />)
+    renderApp()
     const toggle = screen.getByRole('button', { name: 'Abrir menú' })
     expect(toggle).toHaveAttribute('aria-expanded', 'false')
     await userEvent.click(toggle)

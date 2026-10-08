@@ -29,6 +29,7 @@ vi.stubGlobal(
 )
 
 Element.prototype.scrollIntoView = vi.fn()
+window.scrollTo = vi.fn() as typeof window.scrollTo
 
 // jsdom reporta navigator.language = 'en-US'; los tests parten de español
 beforeEach(async () => {

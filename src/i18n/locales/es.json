@@ -43,6 +43,25 @@
     "privateRepo": "Código privado",
     "code": "Código",
     "demo": "Demo",
-    "inProduction": "En producción"
+    "inProduction": "En producción",
+    "viewDetails": "Ver detalle"
+  },
+  "detail": {
+    "back": "Volver a proyectos",
+    "about": "Sobre el proyecto",
+    "stack": "Tecnologías",
+    "role": "Rol",
+    "period": "Período",
+    "status": "Estado",
+    "screenshots": "Capturas",
+    "links": "Enlaces",
+    "more": "Más proyectos",
+    "previous": "Anterior",
+    "next": "Siguiente"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "message": "La página que buscás no existe o fue movida.",
+    "back": "Volver al inicio"
   }
 }

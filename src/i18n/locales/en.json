@@ -43,6 +43,25 @@
     "privateRepo": "Private source",
     "code": "Code",
     "demo": "Demo",
-    "inProduction": "In production"
+    "inProduction": "In production",
+    "viewDetails": "View details"
+  },
+  "detail": {
+    "back": "Back to projects",
+    "about": "About the project",
+    "stack": "Technologies",
+    "role": "Role",
+    "period": "Period",
+    "status": "Status",
+    "screenshots": "Screenshots",
+    "links": "Links",
+    "more": "More projects",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "message": "The page you're looking for doesn't exist or has been moved.",
+    "back": "Back to home"
   }
 }

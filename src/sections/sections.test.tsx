@@ -8,6 +8,7 @@ import { Experience } from '@/sections/Experience'
 import { Hero } from '@/sections/Hero'
 import { Projects } from '@/sections/Projects'
 import { Skills } from '@/sections/Skills'
+import { renderWithRouter } from '@/test/render'
 
 describe('Hero', () => {
   it('muestra foto, rol, bio y contacto', () => {
@@ -50,7 +51,7 @@ describe('Projects', () => {
   })
 
   it('filtra por tecnología y vuelve a mostrar todos', async () => {
-    render(<Projects />)
+    renderWithRouter(<Projects />)
     const cards = () => screen.getAllByRole('article')
     expect(cards()).toHaveLength(projects.length)
 
@@ -65,14 +66,14 @@ describe('Projects', () => {
   })
 
   it('indica código privado cuando no hay repoUrl', () => {
-    render(<Projects />)
+    renderWithRouter(<Projects />)
     const card = screen.getByRole('article', { name: 'Puntualin' })
     expect(within(card).getByText('Código privado')).toBeInTheDocument()
     expect(within(card).getByText('En desarrollo')).toBeInTheDocument()
   })
 
   it('muestra período, rol y estado en producción', () => {
-    render(<Projects />)
+    renderWithRouter(<Projects />)
     const card = screen.getByRole('article', { name: 'Spiga' })
     expect(within(card).getByText('2023 — actualidad')).toBeInTheDocument()
     expect(within(card).getByText('Líder del proyecto y desarrollador')).toBeInTheDocument()

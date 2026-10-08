@@ -11,3 +11,6 @@ export function filterableTechs(list: Project[]): string[] {
     .sort(([a, ca], [b, cb]) => cb - ca || a.localeCompare(b))
     .map(([tech]) => tech)
 }
+
+/** id del DOM de la card de un proyecto, para volver a ella desde el detalle. */
+export const projectCardId = (slug: string) => `card-${slug}`

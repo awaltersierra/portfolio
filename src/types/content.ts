@@ -44,6 +44,13 @@ export type Project = {
   stack: string[]
   repoUrl?: string // solo si el repo es público
   demoUrl?: string
+  /** Capturas para la página de detalle (importar desde src/assets). */
+  images?: ProjectImage[]
+}
+
+export type ProjectImage = {
+  src: string
+  alt: Localized
 }
 
 export type Fact = {

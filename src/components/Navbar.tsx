@@ -4,26 +4,27 @@ import { useTranslation } from 'react-i18next'
 import { SECTION_IDS } from '@/content/navigation'
 import { profile } from '@/content/profile'
 import { useActiveSection } from '@/hooks/useActiveSection'
-import { scrollToSection, scrollToTop } from '@/lib/scroll'
+import { useSectionNavigation } from '@/hooks/useSectionNavigation'
 import { LangToggle } from '@/components/LangToggle'
 import { ThemeToggle } from '@/components/ThemeToggle'
 
 export function Navbar() {
   const { t } = useTranslation()
-  const activeId = useActiveSection(SECTION_IDS)
+  const { isHome, goToSection, goHome } = useSectionNavigation()
+  const activeId = useActiveSection(SECTION_IDS, isHome)
   const [menuOpen, setMenuOpen] = useState(false)
 
-  // preventDefault: el hash de la URL queda reservado para HashRouter
+  // preventDefault: el hash de la URL es del HashRouter; los href apuntan a Home como fallback
   const goTo = (e: MouseEvent, id: string) => {
     e.preventDefault()
     setMenuOpen(false)
-    scrollToSection(id)
+    goToSection(id)
   }
 
   const goTop = (e: MouseEvent) => {
     e.preventDefault()
     setMenuOpen(false)
-    scrollToTop()
+    goHome()
   }
 
   const links = SECTION_IDS.map((id) => {
@@ -31,7 +32,7 @@ export function Navbar() {
     return (
       <li key={id}>
         <a
-          href={`#${id}`}
+          href="#/"
           onClick={(e) => goTo(e, id)}
           aria-current={isActive ? 'location' : undefined}
           className={`block rounded-md px-3 py-2 text-sm font-medium transition-colors ${
@@ -53,7 +54,7 @@ export function Navbar() {
         className="mx-auto flex h-16 max-w-5xl items-center gap-2 px-4 sm:px-6"
       >
         <a
-          href="#top"
+          href="#/"
           onClick={goTop}
           className="mr-auto text-lg font-bold tracking-tight"
           aria-label={t('nav.home', { name: profile.name })}
