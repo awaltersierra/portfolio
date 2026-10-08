@@ -1,0 +1,33 @@
+# Actualizaciones semanales agrupadas: un PR por ecosistema en lugar de uno por paquete.
+# Cada PR pasa por el mismo CI (lint, tipos, tests unitarios y E2E) antes de mergear.
+version: 2
+updates:
+  - package-ecosystem: npm # cubre pnpm (pnpm-lock.yaml)
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      timezone: Europe/Berlin
+    open-pull-requests-limit: 5
+    ignore:
+      # TypeScript fijado en 6.x hasta que typescript-eslint soporte la 7 (peer <6.1)
+      - dependency-name: typescript
+        update-types: ['version-update:semver-major']
+    groups:
+      # Menores y parches juntos; las mayores van en PRs aparte porque pueden romper
+      dependencias:
+        update-types: [minor, patch]
+    commit-message:
+      prefix: 'chore(deps)'
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      timezone: Europe/Berlin
+    groups:
+      actions:
+        patterns: ['*']
+    commit-message:
+      prefix: 'chore(ci)'

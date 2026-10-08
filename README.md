@@ -11,7 +11,8 @@ Requiere Node 24 y pnpm (la versión está fijada en `package.json`).
 ```bash
 pnpm install
 pnpm dev          # servidor de desarrollo
-pnpm test         # tests (Vitest + Testing Library)
+pnpm test         # tests unitarios (Vitest + Testing Library)
+pnpm test:e2e     # tests E2E sobre el build (Playwright; correr pnpm build antes)
 pnpm lint         # ESLint
 pnpm build        # build de producción + pre-render de la home
 pnpm preview      # sirve el build
@@ -37,4 +38,6 @@ Los textos de la interfaz están en `src/i18n/locales/{es,en}.json`. Un test ver
 - **Rutas:** `HashRouter` (`#/projects/<slug>`), porque GitHub Pages no tiene fallback para SPAs.
 - **Pre-render:** `src/entry-server.tsx` renderiza la home y `scripts/prerender.mjs` la inyecta en `dist/index.html`. Un script inline en `index.html` elige el idioma del visitante antes del primer paint y React hidrata sobre ese HTML.
 - **Open Graph:** `og:image`, `og:url` y `canonical` necesitan URLs absolutas; se generan si el build recibe `SITE_URL`. Las imágenes de `public/` se regeneran con `scripts/social-images.html`.
-- **Deploy:** `.github/workflows/deploy.yml` corre lint, formato, tipos y tests en cada push y PR, y publica en GitHub Pages en cada push a `main`.
+- **CI/CD:** `.github/workflows/deploy.yml` corre lint, formato, tipos, tests unitarios y E2E en cada push y PR, y publica en GitHub Pages en cada push a `main`. Las actions están fijadas por hash.
+- **E2E:** `e2e/` (Playwright) prueba el build real: pre-render e hidratación en español e inglés, tema guardado, rutas y descarga del CV. Cualquier error de consola, incluidos los de hidratación, hace fallar el test. Localmente: `pnpm build && pnpm test:e2e`.
+- **Dependencias:** Dependabot abre los lunes un PR agrupado para npm y otro para las actions, y el CI los valida.

@@ -15,3 +15,7 @@ npm-debug.log*
 
 # Documentos personales (no se publican)
 private/
+
+# Playwright Test
+test-results
+playwright-report

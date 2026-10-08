@@ -3,3 +3,7 @@ dist-ssr
 coverage
 node_modules
 package-lock.json
+
+# Playwright Test
+test-results
+playwright-report
