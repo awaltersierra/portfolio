@@ -18,6 +18,19 @@ pnpm build        # build de producción + pre-render de la home
 pnpm preview      # sirve el build
 ```
 
+## Flujo de trabajo
+
+`main` está protegida: no admite push directo ni forzado, y solo recibe cambios por pull request con el CI en verde (job `build`: lint, formato, tipos, tests unitarios y E2E). Al mergear se publica solo en GitHub Pages.
+
+```bash
+git switch -c mi-cambio
+# … cambios …
+git commit -am "descripción"
+git push -u origin mi-cambio
+gh pr create --fill              # abre el PR
+gh pr merge --squash --auto      # se mergea solo cuando el CI pasa
+```
+
 ## Editar el contenido
 
 Todo el contenido vive en `src/content/`, separado de la UI. Los textos que cambian por idioma se escriben como `{ es: '…', en: '…' }`:
