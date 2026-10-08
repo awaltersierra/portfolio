@@ -46,7 +46,9 @@ describe('Projects', () => {
     const techs = filterableTechs(projects)
     expect(techs).not.toContain('Celery')
     expect(techs).toContain('Django')
-    expect(techs[0]).toBe('Docker')
+    // ordenadas de más a menos usadas
+    const uses = techs.map((tech) => projects.filter((p) => p.stack.includes(tech)).length)
+    expect(uses).toEqual([...uses].sort((a, b) => b - a))
     expect(techs).toContain('React')
   })
 

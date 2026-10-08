@@ -15,12 +15,12 @@ export const skillGroups: SkillGroup[] = [
   {
     id: 'backend',
     title: { es: 'Backend', en: 'Backend' },
-    items: ['Node.js', 'Express', 'Django', 'Django REST Framework', 'Celery', 'Prisma'],
+    items: ['Node.js', 'Express', 'Django', 'Django REST Framework', 'Celery'],
   },
   {
     id: 'data',
     title: { es: 'Bases de datos', en: 'Databases' },
-    items: ['MySQL', 'PostgreSQL'],
+    items: ['MySQL'],
   },
   {
     id: 'devops',

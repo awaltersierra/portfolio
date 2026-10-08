@@ -1,6 +1,6 @@
 import type { Project } from '@/types/content'
 
-// Repos privados: sin repoUrl hasta que se publiquen. Los `featured` ocupan el ancho completo.
+// repoUrl solo para repos públicos. Los `featured` ocupan el ancho completo.
 export const projects: Project[] = [
   {
     slug: 'spiga',
@@ -78,40 +78,17 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: 'hotel-booking',
-    title: { es: 'Reservas de hotel', en: 'Hotel Booking' },
+    slug: 'integration-web-service',
+    title: { es: 'Web service de integración a medida', en: 'Custom integration web service' },
     period: '2026',
+    role: { es: 'Líder del proyecto y desarrollador', en: 'Project lead & developer' },
     summary: {
-      es: 'Sistema de reservas de hotel con autenticación JWT en cookies HttpOnly, gestión de perfil y subida de avatares.',
-      en: 'Hotel booking system with JWT authentication in HttpOnly cookies, profile management and avatar uploads.',
+      es: 'Web service a medida en Node.js que conecta un sistema propio con uno de terceros: para cada transacción del sistema externo expone los datos asociados del sistema propio.',
+      en: 'Custom Node.js web service that connects an in-house system with a third-party one: for each transaction of the external system it exposes the related in-house data.',
     },
     description: {
-      es: 'Monorepo con frontend en React 18, TypeScript, Vite y Tailwind CSS, y backend en Node.js con Express, TypeScript y Prisma ORM sobre PostgreSQL 15. Frontend, API y base de datos corren en contenedores orquestados con Docker Compose.',
-      en: 'Monorepo with a React 18, TypeScript, Vite and Tailwind CSS frontend, and a Node.js backend with Express, TypeScript and Prisma ORM on PostgreSQL 15. Frontend, API and database run in containers orchestrated with Docker Compose.',
-    },
-    stack: [
-      'React',
-      'TypeScript',
-      'Vite',
-      'Tailwind CSS',
-      'Node.js',
-      'Express',
-      'Prisma',
-      'PostgreSQL',
-      'Docker',
-    ],
-  },
-  {
-    slug: 'node-rest-api',
-    title: { es: 'API REST con Node.js y MySQL', en: 'Node.js & MySQL REST API' },
-    period: '2026',
-    summary: {
-      es: 'Backend REST dockerizado detrás de Nginx como reverse proxy, con healthchecks y arranque ordenado de servicios.',
-      en: 'Dockerized REST backend behind Nginx as a reverse proxy, with healthchecks and ordered service startup.',
-    },
-    description: {
-      es: 'API con Node.js, Express y MySQL. Docker Compose levanta la API y un Nginx que actúa como reverse proxy; Nginx espera a que el healthcheck de la API esté en verde antes de arrancar, y el código se monta en solo lectura.',
-      en: 'API built with Node.js, Express and MySQL. Docker Compose runs the API and an Nginx reverse proxy; Nginx waits for the API healthcheck to pass before starting, and the source is mounted read-only.',
+      es: 'API REST con Node.js y Express sobre la base MySQL del sistema propio. A partir del identificador de una transacción del sistema de terceros devuelve el remito asociado, su fecha y el kilometraje del vehículo, con validación de parámetros y consultas parametrizadas. Se despliega con Docker Compose detrás de Nginx como reverse proxy, con healthchecks y el código montado en solo lectura.',
+      en: 'REST API built with Node.js and Express on top of the in-house system MySQL database. Given a third-party transaction ID it returns the related delivery note, its date and the vehicle mileage, with parameter validation and parameterized queries. Deployed with Docker Compose behind an Nginx reverse proxy, with healthchecks and the source mounted read-only.',
     },
     stack: ['Node.js', 'Express', 'JavaScript', 'MySQL', 'Nginx', 'Docker'],
   },
@@ -119,15 +96,17 @@ export const projects: Project[] = [
     slug: 'portfolio',
     title: { es: 'Este portfolio', en: 'This portfolio' },
     period: '2026',
-    status: 'in-progress',
+    status: 'in-production',
     summary: {
       es: 'SPA bilingüe con tema claro/oscuro, contenido tipado y tests automatizados.',
       en: 'Bilingual SPA with light/dark theme, typed content and automated tests.',
     },
     description: {
-      es: 'Construido con React 19, TypeScript, Vite y Tailwind CSS 4. Textos en español e inglés con i18next y claves tipadas; el contenido vive en archivos TypeScript separados del código de UI. Tests con Vitest y Testing Library.',
-      en: 'Built with React 19, TypeScript, Vite and Tailwind CSS 4. Spanish and English texts with i18next and typed keys; content lives in TypeScript files separate from the UI code. Tested with Vitest and Testing Library.',
+      es: 'Construido con React 19, TypeScript, Vite y Tailwind CSS 4. Textos en español e inglés con i18next y claves tipadas; el contenido vive en archivos TypeScript separados del código de UI. La home se pre-renderiza en el build en ambos idiomas. Tests con Vitest y Testing Library, y CI/CD con GitHub Actions que publica en GitHub Pages.',
+      en: 'Built with React 19, TypeScript, Vite and Tailwind CSS 4. Spanish and English texts with i18next and typed keys; content lives in TypeScript files separate from the UI code. The home page is pre-rendered at build time in both languages. Tested with Vitest and Testing Library, with GitHub Actions CI/CD deploying to GitHub Pages.',
     },
-    stack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'i18next', 'Vitest'],
+    stack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'i18next', 'Vitest', 'GitHub Actions'],
+    repoUrl: 'https://github.com/awaltersierra/portfolio',
+    demoUrl: 'https://awaltersierra.github.io/portfolio/',
   },
 ]
