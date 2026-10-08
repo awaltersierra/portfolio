@@ -8,3 +8,6 @@ coverage
 !.vscode/extensions.json
 .idea
 npm-debug.log*
+
+# Artefactos de Playwright MCP
+.playwright-mcp

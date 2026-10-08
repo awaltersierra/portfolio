@@ -1,18 +1,43 @@
 @import 'tailwindcss';
 
-/* Dark mode por clase (.dark en <html>), controlado por el toggle de tema en fase 2 */
+/* Dark mode por clase (.dark en <html>), controlado por useTheme */
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --color-accent: var(--color-indigo-600);
 }
 
-html {
-  scroll-behavior: smooth;
+.dark {
+  --color-accent: var(--color-indigo-400);
 }
 
-@media (prefers-reduced-motion: reduce) {
+@layer base {
   html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-white text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  .icon-button {
+    @apply inline-flex size-9 items-center justify-center rounded-md text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-100;
+  }
+  .skip-link {
+    @apply sr-only rounded-md bg-accent px-4 py-2 text-white focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50;
   }
 }
