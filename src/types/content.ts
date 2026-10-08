@@ -19,6 +19,8 @@ export type Education = {
   title: Localized
   institution: string
   location: Localized
+  /** P. ej. título obtenido o tesis pendiente. */
+  status?: Localized
 }
 
 export type SkillGroup = {

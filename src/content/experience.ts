@@ -51,11 +51,20 @@ export const experience: Experience[] = [
   },
 ]
 
+// Orden: la de mayor nivel primero
 export const education: Education[] = [
   {
-    id: 'utn',
-    title: { es: 'Estudiante de Programación', en: 'Programming student' },
-    institution: 'UTN — Universidad Tecnológica Nacional',
-    location: { es: 'Buenos Aires, Argentina', en: 'Buenos Aires, Argentina' },
+    id: 'unlpam-ingenieria',
+    title: { es: 'Ingeniería en Sistemas', en: 'Systems Engineering' },
+    institution: 'UNLPam — Universidad Nacional de La Pampa',
+    location: { es: 'La Pampa, Argentina', en: 'La Pampa, Argentina' },
+    status: { es: 'Tesis pendiente', en: 'Thesis pending' },
+  },
+  {
+    id: 'unlpam-analista',
+    title: { es: 'Analista Programador', en: 'Programmer Analyst' },
+    institution: 'UNLPam — Universidad Nacional de La Pampa',
+    location: { es: 'La Pampa, Argentina', en: 'La Pampa, Argentina' },
+    status: { es: 'Título obtenido', en: 'Degree completed' },
   },
 ]

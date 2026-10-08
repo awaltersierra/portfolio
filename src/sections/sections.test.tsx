@@ -31,7 +31,9 @@ describe('Experience', () => {
     render(<Experience />)
     const roles = screen.getAllByRole('heading', { level: 3 }).map((h) => h.textContent)
     expect(roles.slice(0, experience.length)).toEqual(experience.map((e) => e.role.es))
-    expect(screen.getByText('UTN — Universidad Tecnológica Nacional')).toBeInTheDocument()
+    expect(screen.getAllByText('UNLPam — Universidad Nacional de La Pampa')).toHaveLength(2)
+    expect(screen.getByText('Tesis pendiente')).toBeInTheDocument()
+    expect(screen.getByText('Título obtenido')).toBeInTheDocument()
   })
 })
 

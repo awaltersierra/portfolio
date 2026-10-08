@@ -186,7 +186,7 @@ export function CvDocument({ language }: { language: Language }) {
               key={item.id}
               title={l(item.title)}
               meta={l(item.location)}
-              sub={item.institution}
+              sub={[item.institution, item.status && l(item.status)].filter(Boolean).join(' · ')}
             />
           ))}
         </Section>

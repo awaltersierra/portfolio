@@ -27,6 +27,9 @@ export function Experience() {
             <div>
               <p className="font-semibold">{localize(item.title)}</p>
               <p className="text-slate-600 dark:text-slate-300">{item.institution}</p>
+              {item.status && (
+                <p className="mt-1 text-sm font-medium text-accent">{localize(item.status)}</p>
+              )}
               <p className="text-sm text-slate-500 dark:text-slate-400">
                 {localize(item.location)}
               </p>
