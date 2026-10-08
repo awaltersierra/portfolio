@@ -1,4 +1,4 @@
-import { screen, within } from '@testing-library/react'
+import { screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { projects } from '@/content/projects'
 import { renderApp } from '@/test/render'
@@ -18,7 +18,7 @@ describe('Navegación entre rutas', () => {
     expect(await screen.findByRole('heading', { level: 1, name: 'Spiga' })).toBeInTheDocument()
     expect(screen.getByText(spiga.description.es)).toBeInTheDocument()
     expect(screen.getByText('Líder del proyecto y desarrollador')).toBeInTheDocument()
-    expect(document.title).toBe('Spiga · Walter Sierra · Portfolio')
+    await waitFor(() => expect(document.title).toBe('Spiga · Walter Sierra · Portfolio'))
   })
 
   it('el detalle muestra navegación al proyecto siguiente', async () => {
@@ -37,7 +37,7 @@ describe('Navegación entre rutas', () => {
     expect(screen.getByRole('heading', { level: 1, name: 'Walter Sierra' })).toBeInTheDocument()
     const scrolledTo = vi.mocked(Element.prototype.scrollIntoView).mock.contexts
     expect(scrolledTo).toContain(document.getElementById('card-spiga'))
-    expect(document.title).toBe('Walter Sierra · Portfolio')
+    await waitFor(() => expect(document.title).toBe('Walter Sierra · Portfolio'))
   })
 
   it('un link de la navbar desde el detalle vuelve a Home y lleva a la sección', async () => {

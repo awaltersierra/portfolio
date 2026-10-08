@@ -63,5 +63,17 @@
     "title": "Page not found",
     "message": "The page you're looking for doesn't exist or has been moved.",
     "back": "Back to home"
+  },
+  "cv": {
+    "summary": "Summary",
+    "experience": "Experience",
+    "projects": "Projects",
+    "skills": "Skills",
+    "education": "Education",
+    "languages": "Languages",
+    "citizenship": "Citizenship",
+    "stack": "Technologies",
+    "present": "Present",
+    "subject": "Curriculum vitae"
   }
 }

@@ -4,11 +4,12 @@ import { GithubIcon } from '@/components/icons'
 import { Section } from '@/components/Section'
 import { profile } from '@/content/profile'
 import { useLanguage } from '@/hooks/useLanguage'
+import { cvFileName, cvPath } from '@/lib/cv'
 import { scrollToSection } from '@/lib/scroll'
 
 export function Hero() {
   const { t } = useTranslation()
-  const { localize } = useLanguage()
+  const { localize, language } = useLanguage()
   return (
     <Section id="about">
       <div className="grid items-center gap-10 md:min-h-[calc(100vh-14rem)] md:grid-cols-[1fr_auto] md:gap-16">
@@ -48,12 +49,16 @@ export function Hero() {
               <GithubIcon className="size-4" />
               GitHub
             </a>
-            {profile.cvUrl && (
-              <a href={profile.cvUrl} download className="btn btn-secondary">
-                <Download className="size-4" aria-hidden="true" />
-                {t('hero.downloadCv')}
-              </a>
-            )}
+            {/* PDF generado en el build desde src/content, en el idioma activo */}
+            <a
+              href={cvPath(language)}
+              download={cvFileName(language)}
+              type="application/pdf"
+              className="btn btn-secondary"
+            >
+              <Download className="size-4" aria-hidden="true" />
+              {t('hero.downloadCv')}
+            </a>
             <button
               type="button"
               onClick={() => scrollToSection('projects')}

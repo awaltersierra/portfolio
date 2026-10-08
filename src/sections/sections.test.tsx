@@ -19,8 +19,10 @@ describe('Hero', () => {
       'href',
       `mailto:${profile.email}`,
     )
-    // sin CV publicado no hay botón de descarga
-    expect(screen.queryByRole('link', { name: /Descargar CV/ })).not.toBeInTheDocument()
+    // CV en el idioma activo
+    const cv = screen.getByRole('link', { name: /Descargar CV/ })
+    expect(cv).toHaveAttribute('href', './cv/walter-sierra-cv-es.pdf')
+    expect(cv).toHaveAttribute('download', 'walter-sierra-cv-es.pdf')
   })
 })
 

@@ -28,6 +28,8 @@ Todo el contenido vive en `src/content/`, separado de la UI. Los textos que camb
 | `skills.ts`     | Skills agrupadas                        |
 | `projects.ts`   | Proyectos (card y página de detalle)    |
 
+El **CV en PDF** (botón "Descargar CV") se genera desde ese mismo contenido, en ambos idiomas: en el build queda en `dist/cv/` y con `pnpm dev` se genera al vuelo. El diseño está en `src/cv/CvDocument.tsx`.
+
 Los textos de la interfaz están en `src/i18n/locales/{es,en}.json`. Un test verifica que ambos idiomas tengan las mismas claves.
 
 ## Cómo funciona

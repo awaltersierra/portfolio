@@ -63,5 +63,17 @@
     "title": "Página no encontrada",
     "message": "La página que buscás no existe o fue movida.",
     "back": "Volver al inicio"
+  },
+  "cv": {
+    "summary": "Perfil",
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "skills": "Habilidades",
+    "education": "Formación",
+    "languages": "Idiomas",
+    "citizenship": "Ciudadanía",
+    "stack": "Tecnologías",
+    "present": "Actualidad",
+    "subject": "Currículum vitae"
   }
 }

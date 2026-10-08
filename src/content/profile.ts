@@ -35,10 +35,18 @@ export const profile = {
       label: { es: 'español nativo, inglés', en: 'native Spanish, English' },
     },
   ] satisfies Fact[],
+  // Datos que usa el CV en PDF (src/cv)
+  citizenship: {
+    es: 'Argentina y española',
+    en: 'Argentine and Spanish',
+  } satisfies Localized,
+  languages: [
+    { name: { es: 'Español', en: 'Spanish' }, level: { es: 'nativo', en: 'native' } },
+    { name: { es: 'Inglés', en: 'English' } },
+  ] satisfies { name: Localized; level?: Localized }[],
   email: 'aws1912@gmail.com',
+  siteUrl: 'https://awaltersierra.github.io/portfolio/',
   socials: {
     github: 'https://github.com/awaltersierra',
   },
-  // Sin CV descargable hasta tener una versión orientada a IT
-  cvUrl: undefined as string | undefined,
 } as const

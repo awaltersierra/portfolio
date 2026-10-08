@@ -34,10 +34,35 @@ function absoluteUrlMeta(): Plugin {
   }
 }
 
+/**
+ * En desarrollo genera el CV al vuelo en /cv/walter-sierra-cv-<es|en>.pdf, siempre con el
+ * contenido actual. En el build lo genera scripts/prerender.mjs en dist/cv/.
+ */
+function cvDevServer(): Plugin {
+  return {
+    name: 'cv-dev-server',
+    apply: 'serve',
+    configureServer(server) {
+      server.middlewares.use(async (req, res, next) => {
+        const match = req.url?.match(/^\/cv\/walter-sierra-cv-(es|en)\.pdf$/)
+        if (!match) return next()
+        try {
+          const { renderCv } = await server.ssrLoadModule('/src/cv/renderCv.tsx')
+          const pdf = await renderCv(match[1])
+          res.setHeader('Content-Type', 'application/pdf')
+          res.end(pdf)
+        } catch (error) {
+          next(error)
+        }
+      })
+    },
+  }
+}
+
 // base relativo: funciona en GitHub Pages sin importar el nombre del repo (usamos HashRouter)
 export default defineConfig({
   base: './',
-  plugins: [react(), tailwindcss(), absoluteUrlMeta()],
+  plugins: [react(), tailwindcss(), absoluteUrlMeta(), cvDevServer()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
