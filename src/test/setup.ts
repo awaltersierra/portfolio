@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom/vitest'
-import { afterEach, vi } from 'vitest'
+import { afterEach, beforeEach, vi } from 'vitest'
+import i18n from '@/i18n'
 
 // jsdom no implementa estas APIs del navegador
 class IntersectionObserverStub {
@@ -28,6 +29,11 @@ vi.stubGlobal(
 )
 
 Element.prototype.scrollIntoView = vi.fn()
+
+// jsdom reporta navigator.language = 'en-US'; los tests parten de español
+beforeEach(async () => {
+  await i18n.changeLanguage('es')
+})
 
 afterEach(() => {
   localStorage.clear()

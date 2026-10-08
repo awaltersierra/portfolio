@@ -23,14 +23,27 @@ describe('App', () => {
     expect(localStorage.getItem('theme')).toBe('light')
   })
 
-  it('alterna el idioma, actualiza <html lang> y lo persiste', async () => {
-    localStorage.setItem('lang', 'es')
+  it('cambia a inglés: traduce la UI y el contenido, actualiza el documento y lo persiste', async () => {
     render(<App />)
     expect(document.documentElement.lang).toBe('es')
+    expect(screen.getByText('Desarrollador de software')).toBeInTheDocument()
 
     await userEvent.click(screen.getByRole('button', { name: 'Switch to English' }))
+
+    const nav = screen.getByRole('navigation', { name: 'Main' })
+    for (const label of ['About', 'Experience', 'Skills', 'Projects']) {
+      expect(nav).toHaveTextContent(label)
+    }
+    expect(screen.getByText("Hi, I'm")).toBeInTheDocument()
+    expect(screen.getByText('Software Developer')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Switch to dark theme' })).toBeInTheDocument()
     expect(document.documentElement.lang).toBe('en')
     expect(localStorage.getItem('lang')).toBe('en')
+
+    // y vuelve a español
+    await userEvent.click(screen.getByRole('button', { name: 'Cambiar a español' }))
+    expect(screen.getByRole('navigation', { name: 'Principal' })).toHaveTextContent('Sobre mí')
+    expect(localStorage.getItem('lang')).toBe('es')
   })
 
   it('el link de la navbar scrollea a la sección sin cambiar el hash', async () => {

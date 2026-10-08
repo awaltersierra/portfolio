@@ -1,0 +1,29 @@
+{
+  "meta": {
+    "title": "Walter Sierra · Portfolio",
+    "description": "Portfolio de Walter Sierra"
+  },
+  "nav": {
+    "label": "Principal",
+    "home": "{{name}}, ir al inicio",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "about": "Sobre mí",
+    "experience": "Experiencia",
+    "skills": "Skills",
+    "projects": "Proyectos"
+  },
+  "theme": {
+    "toLight": "Activar tema claro",
+    "toDark": "Activar tema oscuro"
+  },
+  "language": {
+    "switch": "Cambiar a español"
+  },
+  "a11y": {
+    "skipToContent": "Saltar al contenido"
+  },
+  "hero": {
+    "greeting": "Hola, soy"
+  }
+}

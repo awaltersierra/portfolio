@@ -1,9 +1,4 @@
-// Etiquetas en español hasta la fase 3 (i18n)
-export const NAV_ITEMS = [
-  { id: 'about', label: 'Sobre mí' },
-  { id: 'experience', label: 'Experiencia' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'projects', label: 'Proyectos' },
-] as const
+// El orden define el de la navbar y el de las secciones en Home; las etiquetas salen de `nav.<id>`
+export const SECTION_IDS = ['about', 'experience', 'skills', 'projects'] as const
 
-export const SECTION_IDS = NAV_ITEMS.map((item) => item.id)
+export type SectionId = (typeof SECTION_IDS)[number]

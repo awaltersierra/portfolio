@@ -1,31 +1,18 @@
-import { useCallback, useEffect, useState } from 'react'
-import { readStorage, writeStorage } from '@/lib/storage'
-
-// Estado de idioma provisorio: en la fase 3 se conecta con i18next
-export type Language = 'es' | 'en'
-
-const STORAGE_KEY = 'lang'
-
-function initialLanguage(): Language {
-  const stored = readStorage(STORAGE_KEY)
-  if (stored === 'es' || stored === 'en') return stored
-  return navigator.language.toLowerCase().startsWith('en') ? 'en' : 'es'
-}
+import { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
+import { setLanguage } from '@/i18n'
+import { isLanguage, type Language, type Localized } from '@/types/i18n'
 
 export function useLanguage() {
-  const [language, setLanguage] = useState<Language>(initialLanguage)
-
-  useEffect(() => {
-    document.documentElement.lang = language
-  }, [language])
+  const { i18n } = useTranslation()
+  const language: Language = isLanguage(i18n.resolvedLanguage) ? i18n.resolvedLanguage : 'es'
 
   const toggleLanguage = useCallback(() => {
-    setLanguage((prev) => {
-      const next: Language = prev === 'es' ? 'en' : 'es'
-      writeStorage(STORAGE_KEY, next)
-      return next
-    })
-  }, [])
+    void setLanguage(language === 'es' ? 'en' : 'es')
+  }, [language])
 
-  return { language, toggleLanguage }
+  /** Elige la variante del idioma activo de un valor `Localized` del contenido. */
+  const localize = useCallback(<T>(value: Localized<T>): T => value[language], [language])
+
+  return { language, toggleLanguage, localize }
 }

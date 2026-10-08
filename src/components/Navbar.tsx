@@ -1,6 +1,7 @@
 import { useState, type MouseEvent } from 'react'
 import { Menu, X } from 'lucide-react'
-import { NAV_ITEMS, SECTION_IDS } from '@/content/navigation'
+import { useTranslation } from 'react-i18next'
+import { SECTION_IDS } from '@/content/navigation'
 import { profile } from '@/content/profile'
 import { useActiveSection } from '@/hooks/useActiveSection'
 import { scrollToSection, scrollToTop } from '@/lib/scroll'
@@ -8,6 +9,7 @@ import { LangToggle } from '@/components/LangToggle'
 import { ThemeToggle } from '@/components/ThemeToggle'
 
 export function Navbar() {
+  const { t } = useTranslation()
   const activeId = useActiveSection(SECTION_IDS)
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -24,7 +26,7 @@ export function Navbar() {
     scrollToTop()
   }
 
-  const links = NAV_ITEMS.map(({ id, label }) => {
+  const links = SECTION_IDS.map((id) => {
     const isActive = activeId === id
     return (
       <li key={id}>
@@ -38,7 +40,7 @@ export function Navbar() {
               : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100'
           }`}
         >
-          {label}
+          {t(`nav.${id}`)}
         </a>
       </li>
     )
@@ -47,14 +49,14 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200/70 bg-white/80 backdrop-blur-md dark:border-slate-800/70 dark:bg-slate-950/80">
       <nav
-        aria-label="Principal"
+        aria-label={t('nav.label')}
         className="mx-auto flex h-16 max-w-5xl items-center gap-2 px-4 sm:px-6"
       >
         <a
           href="#top"
           onClick={goTop}
           className="mr-auto text-lg font-bold tracking-tight"
-          aria-label={`${profile.name}, ir al inicio`}
+          aria-label={t('nav.home', { name: profile.name })}
         >
           {profile.initials}
           <span className="text-accent">.</span>
@@ -70,7 +72,7 @@ export function Navbar() {
             onClick={() => setMenuOpen((open) => !open)}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
-            aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+            aria-label={menuOpen ? t('nav.closeMenu') : t('nav.openMenu')}
             className="icon-button md:hidden"
           >
             {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
